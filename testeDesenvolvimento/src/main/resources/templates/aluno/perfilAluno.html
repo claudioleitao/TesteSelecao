@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta Charset="UTF-8">
+<html>
+	<head>
+		<title>Cursos de Tecnologia Adverum - Entrar</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+		<link rel="stylesheet" href="css/formEntrar.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+			<a href="#" class="navbar-brand"><img src="img/logo.png" /></a>
+			<ul class="navbar-nav">
+    			<li class="nav-item">
+      				<a class="nav-link" href="/login">Logoff</a>
+    			</li>
+  			</ul>
+		</nav>
+<!--  		<div id="successAlert" class="alert alert-success alert-dismissible" rule="alert" th:if="${not #strings.isEmpty(successMessage)}">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<span th:text="${successMessage}"></span>
+		</div>-->
+		<div id="failAlert" class="alert alert-danger alert-dismissible" rule="alert" th:if="${not #strings.isEmpty(errorMessage)}">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<span th:text="${errorMessage}"></span>
+		</div>
+		<div class="container bg-light rounded shadow-sm" style="">
+			<div class="form-group">
+  				<label for="sel1">Lista de Cursos:</label>
+				<table class="table table-striped container">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="curso1 : ${listaCursos}">
+							<td><a th:href="${(#mvc.url('AC#incluirCurso').arg(0, curso1.codigo)).build()}"><span th:text="${curso1.nome}"></span></a></td>
+							<td><span th:text="${curso1.dataInclusao}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+  				<label for="sel1">Cursos Escolhidos:</label>
+				<table class="table table-striped container">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Data</th>
+							<th>Remover</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="curso2 : ${cursos1}">
+							<td><span th:text="${curso2.nome}"></span></td>
+							<td><span th:text="${curso2.dataInclusao}"></span></td>
+							<td><a th:href="${(#mvc.url('AC#excluirCurso').arg(0, curso2.codigo)).build()}">Excluir</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<footer class="footer mt-auto py-3 bg-light">
+      		<div id="footer" class="container">
+        		<span class="text-muted">Site de desafio para processo seletivo.</span><br>
+        		<span class="text-muted">Created by Cláudio Fernando Leitão.</span><br>
+        		<span class="text-muted"><a href="mailto:claudio.leitao@yahoo.com.br">Contato: claudio.leitao@yahoo.com.br</a></span>
+      		</div>
+    	</footer>
+	</body>
+</html>
